@@ -1,0 +1,40 @@
+<div class="container">
+	<div *ngIf="afAuth.user | async as user; else showLogin">
+			<h1>Hello {{ user.displayName }}!</h1>
+			<button (click)="logout()">Logout</button>
+	</div>
+	<ng-template #showLogin>
+		<mat-card>
+			<mat-toolbar>
+				<mat-toolbar-row>
+					<span>Login with Email</span>
+					<span class="example-spacer"></span>
+					<button mat-flat-button color="warn" (click)="loginWithEmail()">Login</button>
+				</mat-toolbar-row>
+			</mat-toolbar>
+			<form [formGroup]="loginForm" fxLayout="column row" fxLayoutGap="10px">
+				<mat-form-field>
+					<input matInput placeholder="Enter email" formControlName="email">
+				</mat-form-field>
+				<mat-form-field>
+					<input matInput type="password" placeholder="Enter password" formControlName="password">
+				</mat-form-field>
+			</form>
+			<br>
+			<a routerLink="/register">New User? Register with TrackEAT now!</a>
+		</mat-card>
+		<br>
+		<mat-card>
+				<mat-toolbar>
+						<mat-toolbar-row>
+							<span>Continue with Facebook</span>
+							<span class="example-spacer"></span>
+							<button mat-flat-button color="primary" (click)="loginFacebook()">Login with Facebook</button>
+						</mat-toolbar-row>
+					</mat-toolbar>
+
+		</mat-card>
+
+	</ng-template>
+</div>
+

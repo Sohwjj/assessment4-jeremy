@@ -1,0 +1,44 @@
+<mat-card fxLayout fxLayoutGap="1vw">
+  <form [formGroup]="searchForm" fxLayout="column" fxFlex="grow">    
+    <mat-form-field>
+      <input id="term" matInput placeholder="Search by location" formControlName="term">
+    </mat-form-field>
+  </form>
+  <button mat-button type="submit" (click)="onSubmit()">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-card>
+
+<h3 class="center"> Sort the results by clicking on header!</h3>
+
+<table mat-table [dataSource]="stalls" class="table" matSort style="margin-right: 1em;">
+      
+  <ng-container matColumnDef="stallname">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Stall Name </th>
+    <td mat-cell *matCellDef="let stall"> {{stall.stallname}} </td>
+  </ng-container>
+    
+  <ng-container matColumnDef="stalladdress">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Stall Address </th>
+    <td mat-cell *matCellDef="let stall"> {{stall.stalladdress}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cuisine">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Stall Cuisine </th>
+    <td mat-cell *matCellDef="let stall"> {{stall.cuisine}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="area">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Area </th>
+    <td mat-cell *matCellDef="let stall"> {{stall.area}} </td>
+  </ng-container>
+    
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [length]="length"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="pageSizeOptions" 
+              (page)="$event">
+</mat-paginator>

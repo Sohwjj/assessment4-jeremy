@@ -1,0 +1,10 @@
+<mat-card fxLayout fxLayoutGap="1vw">
+  <form [formGroup]="searchForm" fxLayout="column" fxFlex="grow">    
+    <mat-form-field>
+      <input id="term" matInput placeholder="Search by cuisine or dish" formControlName="term">
+    </mat-form-field>
+  </form>
+  <button mat-button>
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-card>
